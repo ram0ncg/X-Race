@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator Game()
     {
-        while (stats.time >= 0 && !stats.win)
+        while (stats.time > 0 && !stats.win)
         {
             yield return new WaitForSeconds(1f);
             stats.time--;
