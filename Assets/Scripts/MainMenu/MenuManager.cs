@@ -54,7 +54,7 @@ public class MenuManager : MonoBehaviour
                     stats[i].text = "Score: " + gameStats.score;
                     break;
                 case "Rings":
-                    stats[i].text = "Rings: " + (gameStats.maxRings - gameStats.rings) + "/" + gameStats.maxRings;
+                    stats[i].text = "Rings: " + gameStats.rings + "/" + gameStats.maxRings;
                     break;
                 case "Teseracts":
                     stats[i].text = "Teseracts: " + (gameStats.maxTeseracts - gameStats.teseracts) + "/" + gameStats.maxTeseracts;
