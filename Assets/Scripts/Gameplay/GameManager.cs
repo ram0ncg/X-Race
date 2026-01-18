@@ -26,12 +26,26 @@ public class GameManager : MonoBehaviour
             StartCoroutine(Game());
         }    
     }
+    IEnumerator Game()
+    {
+        while (stats.time > 0 && !stats.win)
+        {
+            yield return new WaitForSeconds(1f);
+            stats.time--;
+            if (stats.rings == 0)
+            {
+                stats.win = true;
+            }
+        }
+        stats.score = stats.time * (stats.maxTeseracts - stats.teseracts);
+        SceneManager.LoadScene(2);
+    }
     public void RingCrossed(int id)
     {
         stats.rings--;
-        if (id < rings.childCount - 1)
+        if (id < rings.childCount - 1) //Si aun quedan aros que cruzar.
         {
-            rings.GetChild(id + 1).GetComponent<RingContoller>().SetOn();
+            rings.GetChild(id + 1).GetComponent<RingContoller>().SetOn(); //Activa el siguiente aro de la lista.
         }
     }
     public Vector3 ConvertEuler(Vector3 angle)
@@ -43,12 +57,12 @@ public class GameManager : MonoBehaviour
 
         return angle;
     }
-    public void GenerateTeseracts()
+    public void GenerateTeseracts() //Genera objetos a lo largo de la Spline de forma distribuida inversamente proporcional.
     {
         for (int i = 0; i < stats.maxTeseracts; i++)
         {
-            float baseT = Mathf.Pow(i / (float)(stats.maxTeseracts - 1), 1.5f);
-            float noise = (Mathf.PerlinNoise(i * 0.3f, 0f) - 0.5f) * 0.05f;
+            float baseT = Mathf.Pow(i / (float)(stats.maxTeseracts - 1), 1.5f); //X= (y/49) ^ 1.5
+            float noise = (Mathf.PerlinNoise(i * 0.3f, 0f) - 0.5f) * 0.05f; //Genera ruido
             noise = Mathf.Clamp(noise, -1f / stats.maxTeseracts * 0.5f, 1f / stats.maxTeseracts * 0.5f);
 
             float t = baseT + noise;
@@ -59,18 +73,5 @@ public class GameManager : MonoBehaviour
             GameObject teseract = Instantiate(teseractPrefab, position, Quaternion.LookRotation(forward));
             teseract.transform.parent = transform;
         }
-    }
-    IEnumerator Game()
-    {
-        while (stats.time > 0 && !stats.win)
-        {
-            yield return new WaitForSeconds(1f);
-            stats.time--;
-            if (stats.rings == 0) {
-                stats.win = true;
-            }
-        }
-        stats.score = stats.time * (stats.maxTeseracts - stats.teseracts);
-        SceneManager.LoadScene(2);
-    }
+    }  
 }

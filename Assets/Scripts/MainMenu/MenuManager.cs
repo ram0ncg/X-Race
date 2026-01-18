@@ -56,11 +56,11 @@ public class MenuManager : MonoBehaviour
                 case "Rings":
                     if(scene == 1)
                     {
-                        stats[i].text = "Rings: " + (gameStats.maxRings - gameStats.rings);
+                        stats[i].text = "Rings: " + gameStats.rings;
                     }
                     else
                     {
-                        stats[i].text = "Rings: " + gameStats.rings + "/" + gameStats.maxRings;
+                        stats[i].text = "Rings: " + (gameStats.maxRings - gameStats.rings) + "/" + gameStats.maxRings;
                     }    
                     break;
                 case "Teseracts":

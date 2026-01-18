@@ -1,12 +1,10 @@
-using System.Net.NetworkInformation;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class RingContoller : MonoBehaviour
 {
-    public Material on;
-    public Material off;
-    public Material ba;
+    public Material on; //Material de aro inactivo.
+    public Material off; //Material de aro activo.
+    public Material ba; //Material base.
     public int id;
     public bool crossed;
     public bool active;
@@ -36,13 +34,13 @@ public class RingContoller : MonoBehaviour
     {
         if (active && other.gameObject.name == "Xwing" && !crossed)
         {
-            enterPosition = other.transform.position;
+            enterPosition = other.transform.position; //En trigger enter, captura la posicion de la nave.
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (active && other.gameObject.name == "Xwing" && !crossed)
-        {
+        { //Captura la posicion de salida la compara junto a la de entrada si esta mas o menos cerca de la salida del aro.
             if((exitGate - other.transform.position).sqrMagnitude < (exitGate - enterPosition).sqrMagnitude){
                 crossed = true;
                 manager.RingCrossed(SetOff());

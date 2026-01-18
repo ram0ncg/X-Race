@@ -4,23 +4,23 @@ using UnityEngine;
 public class SpaceShipStats : ScriptableObject
 {
     [Header("Properties")]
-    public float mass;
-    public float maxV;
-    public float maxAV;
+    public float mass; //La masa de la nave.
+    public float maxV; //La velocidad linieal maxima.
+    public float maxAV; //La velocidad angular maxima.
 
     [Header("Trhust")]
-    public float maxThrust;
-    public float counterThrust;
-    public float thrustAcceleration;
+    public float maxThrust; //Empuje maximo del motor.
+    public float counterThrust; //Empuje contrario, para desacelerar la nave.
+    public float thrustAcceleration; 
 
     [Header("Rotation")]
-    public Vector3 maxTorque;
-    public float counterTorque;
-    public float torqueAcceleration;
+    public Vector3 maxTorque; //Fureza maxima para cambiar la rotacion
+    public float counterTorque; //Fuerza contraria
+    public float torqueAcceleration; 
     
 
     [Header("Telemetry")]
-    public Vector3 currentThrust;
+    public Vector3 currentThrust; 
     public Vector3 currentTorque;
     public Vector3 linearVelocity;
     public Vector3 angularVelocity;

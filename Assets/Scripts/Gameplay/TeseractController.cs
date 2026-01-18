@@ -1,4 +1,3 @@
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class TeseractController : MonoBehaviour
@@ -6,6 +5,7 @@ public class TeseractController : MonoBehaviour
     public float oscilationSpeed = 2f;
     public float range = 0.05f;
     public GameObject hitPrefab;
+
     private Transform spaceshipTr;
     private Vector3 defaultPosition;
     private GameManager manager;
@@ -26,13 +26,12 @@ public class TeseractController : MonoBehaviour
             Destroy(crystals, 1.5f);
         }
     }
-    // Update is called once per frame
     void Update()
     {
         float y = Mathf.Sin(Time.time * oscilationSpeed) * range;
-        Vector3 spaceshipPosition = spaceshipTr.position;
-        transform.position = defaultPosition + new Vector3(0, y,0);
-        transform.Rotate(0, 0, 200f / Mathf.Max((transform.position - spaceshipPosition).magnitude, 0.1f) * Time.deltaTime);
+        Vector3 spaceshipPosition = spaceshipTr.position; 
+        transform.position = defaultPosition + new Vector3(0, y,0); //Oscilacion arriba y abajo.
+        transform.Rotate(0, 0, 200f / Mathf.Max((transform.position - spaceshipPosition).magnitude, 0.1f) * Time.deltaTime); //Rotacion dependiendo de la distancia de la a la nave.
     }
 
 }
