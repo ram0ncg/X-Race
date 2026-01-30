@@ -43,6 +43,10 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
     public void UpdateStats()
     {
         for (int i = 0; i < statsObjects.Length; i++)
